@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AxiosInstance2 } from "../../../api/AxiosInstance";
+import { MdDelete } from "react-icons/md";
+import { FiEdit2 } from "react-icons/fi";
 
 const Address = () => {
   let [state, setState] = useState([]);
+  // !fetching data:
   const fetchData = async () => {
-    let { data } = await AxiosInstance2.get("/data");
-    console.log(data);
-    setState(data);
+    try {
+      let { data } = await AxiosInstance2.get("/data");
+      console.log(data);
+      setState(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     fetchData();
   }, []);
+
+  // !deleting data:
+  const deleteData = async id => {
+    try {
+      await AxiosInstance2.delete(`data/${id}`);
+      setState(prev => prev.filter(val => val.id != id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="h-[70px] bg-blue-500 w-[100vw] flex text-white items-center">
@@ -29,7 +47,7 @@ const Address = () => {
       </div>
       <div>
         {state.map((val, ind) => {
-          let { ename, mobile, email, address, pincode } = val;
+          let { ename, mobile, email, address, pincode, id } = val;
           return (
             <div className="flex  text-slate-700 m-4" key={ind}>
               <div>
@@ -55,9 +73,20 @@ const Address = () => {
               <div className="ml-8 h-[35px] flex gap-4 ">
                 <Link className="p-2 bg-blue-400 text-sm w-[auto] text-white font-semibold rounded text-center">
                   Edit
+                  <span>
+                    <FiEdit2 />
+                  </span>
                 </Link>
-                <button className="p-2 bg-red-400 text-sm w-[auto] text-white font-semibold rounded text-center">
+                <button
+                  onClick={() => {
+                    deleteData(id);
+                  }}
+                  className="p-2 bg-red-400 text-sm w-[auto] text-white font-semibold rounded text-center"
+                >
                   Delete
+                  <span>
+                    <MdDelete />
+                  </span>
                 </button>
               </div>
             </div>
