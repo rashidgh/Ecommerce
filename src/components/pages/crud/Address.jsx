@@ -71,9 +71,9 @@ const Address = () => {
                 </div>
               </div>
               <div className="ml-8 h-[35px] flex gap-4 ">
-                <Link className="p-2 bg-blue-400 text-sm w-[auto] text-white font-semibold rounded text-center">
+                <Link className="p-2 bg-blue-400 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center">
                   Edit
-                  <span>
+                  <span className="text-lg">
                     <FiEdit2 />
                   </span>
                 </Link>
@@ -81,10 +81,10 @@ const Address = () => {
                   onClick={() => {
                     deleteData(id);
                   }}
-                  className="p-2 bg-red-400 text-sm w-[auto] text-white font-semibold rounded text-center"
+                  className="p-2 bg-red-400 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
                 >
                   Delete
-                  <span>
+                  <span className="text-lg">
                     <MdDelete />
                   </span>
                 </button>
