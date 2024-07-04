@@ -8,23 +8,24 @@ import Electronics from "./components/pages/collection/Electronics";
 import Grocery from "./components/pages/collection/Grocery";
 import Cheif from "./components/pages/Cheif";
 import Address from "./components/pages/crud/Address";
+import ContextApi from "./api/ContextApi";
 
 const App = () => {
   return (
-    // <div>
-    //   <Navbar />
-    // </div>
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Cheif />} />
-        <Route path="/mens" element={<Mens />} />
-        <Route path="/womens" element={<Womens />} />
-        <Route path="/electronics" element={<Electronics />} />
-        <Route path="/grocery" element={<Grocery />} />
-        <Route path="/address" element={<Address />} />
-      </Routes>
-    </BrowserRouter>
+   
+    <ContextApi>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Cheif />} />
+          <Route path="/mens" element={<Mens />} />
+          <Route path="/womens" element={<Womens />} />
+          <Route path="/electronics" element={<Electronics />} />
+          <Route path="/grocery" element={<Grocery />} />
+          <Route path="/address" element={<Address />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextApi>
   );
 };
 

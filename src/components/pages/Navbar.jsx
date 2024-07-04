@@ -9,7 +9,7 @@ const Navbar = () => {
     return null;
   }
   return (
-    <div className="h-[75px] w-[100vw] text-white bg-slate-400 flex justify-between items-center">
+    <div className="h-[75px] w-[100vw] text-white bg-blue-500 flex justify-between items-center">
       <div className="w-[15%] text-xl text-center"><Link to="/">QspiderFashion</Link></div>
       <div className="w-[55%]">
         <ul className="flex justify-around">

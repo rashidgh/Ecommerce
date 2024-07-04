@@ -3,6 +3,7 @@ import AxiosInstance from "../../api/AxiosInstance";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import CountUp from "react-countup";
 
 const Cards = () => {
   let [state, setState] = useState([]);
@@ -14,11 +15,12 @@ const Cards = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  // !Aos Animation:
   useEffect(() => {
     AOS.init();
   }, []);
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center mt-[100px]">
+    <div className="flex flex-wrap gap-4 items-center justify-center mt-[100px] ">
       {state.map((val, ind) => {
         const { image, title, price, rating } = val;
         return (
@@ -31,9 +33,12 @@ const Cards = () => {
               <img className="h-[250px] w-[200px]" src={image} alt="" />
             </div>
             <div>
-              <b>{price}</b>
+              <b>
+                ₹
+                <CountUp end={price} duration={2} />
+              </b>
               <b className="text-slate-500 ml-2">
-                <strike>{rating.count}</strike>
+                <strike>₹{rating.count}</strike>
               </b>
             </div>
             <p>{title.slice(0, 18)}</p>
