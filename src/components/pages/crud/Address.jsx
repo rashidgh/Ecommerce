@@ -6,6 +6,7 @@ import { FiEdit2 } from "react-icons/fi";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Provider } from "../../../api/ContextApi";
+import toast from "react-hot-toast";
 
 const Address = () => {
   let [state, setState] = useState([]);
@@ -30,8 +31,10 @@ const Address = () => {
     try {
       await AxiosInstance2.delete(`data/${id}`);
       setState(prev => prev.filter(val => val.id != id));
+      toast.success("Address has been deleted");
     } catch (error) {
       console.log(error);
+      toast.error("something went wrong");
     }
   };
   // !Aos Animation:
@@ -53,7 +56,10 @@ const Address = () => {
         data-aos="fade-down"
         className="w-[100vw] flex justify-center items-center h-[60px ]text-xl"
       >
-        <Link className="w-[90vw] bg-blue-400 hover:bg-blue-300 rounded text-white flex items-center justify-center mt-4 text-center h-[50px] mb-8">
+        <Link
+          to="/addNewAddress"
+          className="w-[90vw] bg-blue-400 hover:bg-blue-300 rounded text-white flex items-center justify-center mt-4 text-center h-[50px] mb-8"
+        >
           Add New Address+
         </Link>
       </div>

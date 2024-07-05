@@ -4,28 +4,50 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
-  console.log(location)
-  if (location.pathname == "/address") {
+  console.log(location);
+  if (
+    location.pathname == "/address" ||
+    location.pathname == "/addNewAddress"
+  ) {
     return null;
   }
   return (
     <div className="h-[75px] w-[100vw] text-white bg-blue-500 flex justify-between items-center">
-      <div className="w-[15%] text-xl text-center"><Link to="/">QspiderFashion</Link></div>
+      <div className="w-[15%] text-xl text-center">
+        <Link to="/">QspiderFashion</Link>
+      </div>
       <div className="w-[55%]">
         <ul className="flex justify-around">
           <NavLink
-            className={({ isActive }) => (isActive ? "font-semibold text-red-600" : "")}
+            className={({ isActive }) =>
+              isActive ? "font-semibold text-red-600" : ""
+            }
             to="/mens"
           >
             <li>Mens</li>
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? "font-semibold text-red-600" : "")}  to="/womens">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "font-semibold text-red-600" : ""
+            }
+            to="/womens"
+          >
             <li>Womens</li>
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? "font-semibold text-red-600" : "")} to="/grocery">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "font-semibold text-red-600" : ""
+            }
+            to="/grocery"
+          >
             <li>Grocery</li>
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? "font-semibold text-red-600" : "")} to="/electronics">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "font-semibold text-red-600" : ""
+            }
+            to="/electronics"
+          >
             <li>Electronics</li>
           </NavLink>
         </ul>

@@ -9,10 +9,11 @@ import Grocery from "./components/pages/collection/Grocery";
 import Cheif from "./components/pages/Cheif";
 import Address from "./components/pages/crud/Address";
 import ContextApi from "./api/ContextApi";
+import toast, { Toaster } from "react-hot-toast";
+import AddNewAddress from "./components/pages/crud/AddNewAddress";
 
 const App = () => {
   return (
-   
     <ContextApi>
       <BrowserRouter>
         <Navbar />
@@ -23,7 +24,9 @@ const App = () => {
           <Route path="/electronics" element={<Electronics />} />
           <Route path="/grocery" element={<Grocery />} />
           <Route path="/address" element={<Address />} />
+          <Route path="/addNewAddress" element={<AddNewAddress />} />
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </ContextApi>
   );
