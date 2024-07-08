@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AxiosInstance2 } from "../../../api/AxiosInstance";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddNewAddress = () => {
   const [state, setState] = useState({
@@ -11,16 +11,36 @@ const AddNewAddress = () => {
     address: "",
     pincode: "",
   });
+  
+  let navigate = useNavigate();
   const { ename, mob, email, address, pincode } = state;
   // !handleSubmit:
   const handleSubmit = e => {
-      e.preventDefault();
-      
+    e.preventDefault();
     console.log(state);
+    if (!ename && !mob && !email && !address && !pincode) {
+      return toast.error("Credentials can not be empty");
+    }
+    if (!ename) {
+      return toast.error("name field can't be empty");
+    }
+    if (!mob) {
+      return toast.error("mobile field can't be empty");
+    }
+    if (!email) {
+      return toast.error("email field can't be empty");
+    }
+    if (!address) {
+      return toast.error("address field can't be empty");
+    }
+    if (!pincode) {
+      return toast.error("pincode field can't be empty");
+    }
     try {
       AxiosInstance2.post("/data", state);
-        toast.success("Address has been added");
-        setState({ename:"",mob:"",email:"",address:"",pincode:""})
+      toast.success("Address has been added");
+      setState({ ename: "", mob: "", email: "", address: "", pincode: "" });
+      navigate("/address");
     } catch (error) {
       toast.error("something went wrong");
     }
@@ -82,12 +102,12 @@ const AddNewAddress = () => {
             value={pincode}
             id=""
           />
-         
-          <Link to="/address">
-            <button className="w-full bg-blue-500 text-white p-[12px] mt-2 ">
+
+          {/* <Link to="/address"> */}
+          <button className="w-full bg-blue-500 text-white p-[12px] mt-2 ">
             Add Address
           </button>
-          </Link>
+          {/* </Link> */}
         </form>
       </div>
     </div>

@@ -7,9 +7,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Provider } from "../../../api/ContextApi";
 import toast from "react-hot-toast";
+import Spinner from "../Spinner";
 
 const Address = () => {
   let [state, setState] = useState([]);
+  let [loading, setLoading] = useState(false);
   const data = useContext(Provider);
   const { deliver, setDeliver } = data;
   // !fetching data:
@@ -18,6 +20,7 @@ const Address = () => {
       let { data } = await AxiosInstance2.get("/data");
       console.log(data);
       setState(data);
+      setLoading(true);
     } catch (error) {
       console.log(error);
     }
@@ -64,68 +67,78 @@ const Address = () => {
         </Link>
       </div>
       <div>
-        {state.map((val, ind) => {
-          let { ename, mobile, email, address, pincode, id } = val;
-          return (
-            <div className="flex justify-between w-[100vw]">
-              <div className="flex  text-slate-700 m-4" key={ind}>
-                <div>
-                  <div className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      name="radiobtn"
-                      className="h-[20px] w-[20px]"
-                      id={ind}
-                      value={val.id}
-                      onChange={e => setDeliver(e.target.value)}
-                    />
+        {loading == false ? (
+          <span className="h-[40vh] flex justify-center item-center">
+            <Spinner />
+          </span>
+        ) : state.length < 1 ? (
+          <p className="h-[20vh] text-red-600 font-semibold flex justify-center items-center text-2xl">
+            No Data Found
+          </p>
+        ) : (
+          state.map((val, ind) => {
+            let { ename, mobile, email, address, pincode, id } = val;
+            return (
+              <div className="flex justify-between w-[100vw]">
+                <div className="flex  text-slate-700 m-4" key={ind}>
+                  <div>
+                    <div className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="radiobtn"
+                        className="h-[20px] w-[20px]"
+                        id={ind}
+                        value={val.id}
+                        onChange={e => setDeliver(e.target.value)}
+                      />
 
-                    <label htmlFor={ind} className="text-xl">
-                      <b>{ename}</b>
-                    </label>
-                    <b>{mobile}</b>
-                    <b>{email}</b>
+                      <label htmlFor={ind} className="text-xl">
+                        <b>{ename}</b>
+                      </label>
+                      <b>{mobile}</b>
+                      <b>{email}</b>
+                    </div>
+                    <div className="ml-8 flex gap-2">
+                      <b> {address}</b>
+                      <b>{pincode}</b>
+                    </div>
                   </div>
-                  <div className="ml-8 flex gap-2">
-                    <b> {address}</b>
-                    <b>{pincode}</b>
+                  <div className="ml-8 h-[35px] flex gap-4 ">
+                    <Link className="p-2 bg-blue-400 hover:bg-blue-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center">
+                      Edit
+                      <span className="text-lg">
+                        <FiEdit2 />
+                      </span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        deleteData(id);
+                      }}
+                      className="p-2 bg-red-400 hover:bg-red-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
+                    >
+                      Delete
+                      <span className="text-lg">
+                        <MdDelete />
+                      </span>
+                    </button>
                   </div>
                 </div>
-                <div className="ml-8 h-[35px] flex gap-4 ">
-                  <Link className="p-2 bg-blue-400 hover:bg-blue-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center">
-                    Edit
-                    <span className="text-lg">
-                      <FiEdit2 />
-                    </span>
+                {deliver == val.id ? (
+                  <Link>
+                    <div
+                      data-aos="fade-left"
+                      className="mr-8 p-3 text-xl h-[60px] flex items-center justify-center w-[18vw] text-center bg-orange-400 hover:bg-orange-300 rounded text-white"
+                    >
+                      <input type="button" value="Deliver Here" />
+                    </div>
                   </Link>
-                  <button
-                    onClick={() => {
-                      deleteData(id);
-                    }}
-                    className="p-2 bg-red-400 hover:bg-red-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
-                  >
-                    Delete
-                    <span className="text-lg">
-                      <MdDelete />
-                    </span>
-                  </button>
-                </div>
+                ) : (
+                  ""
+                )}
               </div>
-              {deliver == val.id ? (
-                <Link>
-                  <div
-                    data-aos="fade-left"
-                    className="mr-8 p-3 text-xl h-[60px] flex items-center justify-center w-[18vw] text-center bg-orange-400 hover:bg-orange-300 rounded text-white"
-                  >
-                    <input type="button" value="Deliver Here" />
-                  </div>
-                </Link>
-              ) : (
-                ""
-              )}
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

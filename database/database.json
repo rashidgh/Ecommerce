@@ -1,20 +1,12 @@
 {
   "data": [
     {
-      "ename": "Geetha",
-      "mobile": 7847896758,
-      "email": "geetha@gmail.com   ",
-      "address": "Jspider sector6 Telangana India",
-      "pincode": "789647",
+      "ename": "Rashid",
+      "mob": "934610542",
+      "email": "rashid@gmail.com",
+      "address": "Dalanpar Daulatpur Arrah Bhojpur India",
+      "pincode": "802313",
       "id": 1
-    },
-    {
-      "ename": "Geetha",
-      "mobile": 7847896758,
-      "email": "geetha@gmail.com   ",
-      "address": "Jspider sector6 Telangana India",
-      "pincode": "789647",
-      "id": 2
     }
   ]
 }

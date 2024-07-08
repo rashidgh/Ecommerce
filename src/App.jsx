@@ -11,24 +11,26 @@ import Address from "./components/pages/crud/Address";
 import ContextApi from "./api/ContextApi";
 import toast, { Toaster } from "react-hot-toast";
 import AddNewAddress from "./components/pages/crud/AddNewAddress";
+import Classbased from "./Classbased";
 
 const App = () => {
   return (
-    <ContextApi>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Cheif />} />
-          <Route path="/mens" element={<Mens />} />
-          <Route path="/womens" element={<Womens />} />
-          <Route path="/electronics" element={<Electronics />} />
-          <Route path="/grocery" element={<Grocery />} />
-          <Route path="/address" element={<Address />} />
-          <Route path="/addNewAddress" element={<AddNewAddress />} />
-        </Routes>
-        <Toaster />
-      </BrowserRouter>
-    </ContextApi>
+    // <ContextApi>
+    //   <BrowserRouter>
+    //     <Navbar />
+    //     <Routes>
+    //       <Route path="/" element={<Cheif />} />
+    //       <Route path="/mens" element={<Mens />} />
+    //       <Route path="/womens" element={<Womens />} />
+    //       <Route path="/electronics" element={<Electronics />} />
+    //       <Route path="/grocery" element={<Grocery />} />
+    //       <Route path="/address" element={<Address />} />
+    //       <Route path="/addNewAddress" element={<AddNewAddress />} />
+    //     </Routes>
+    //     <Toaster />
+    //   </BrowserRouter>
+    // </ContextApi>
+    <Classbased />
   );
 };
 
