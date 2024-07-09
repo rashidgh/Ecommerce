@@ -4,13 +4,16 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import CountUp from "react-countup";
+import Spinner from "./Spinner";
 
 const Cards = () => {
   let [state, setState] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     let { data } = await AxiosInstance("/products");
     console.log(data);
     setState(data);
+    setLoading(true);
   };
   useEffect(() => {
     fetchData();
@@ -21,38 +24,48 @@ const Cards = () => {
   }, []);
   return (
     <div className="flex flex-wrap gap-4 items-center justify-center mt-[100px] ">
-      {state.map((val, ind) => {
-        const { image, title, price, rating } = val;
-        return (
-          <div
-            key={ind}
-            className="bg-[white] shadow flex flex-col text-center item-center h-[auto] w-[250px] p-2 justify-around mt-[20px] rounded"
-            data-aos="zoom-in"
-          >
-            <div>
-              <img className="h-[250px] w-[200px]" src={image} alt="" />
+      {loading == false ? (
+        <span className="h-[40vh] flex justify-center item-center">
+          <Spinner />
+        </span>
+      ) : state.length < 1 ? (
+        <p className="h-[20vh] text-red-600 font-semibold flex justify-center items-center text-2xl">
+          No Data Found
+        </p>
+      ) : (
+        state.map((val, ind) => {
+          const { image, title, price, rating } = val;
+          return (
+            <div
+              key={ind}
+              className="bg-[white] shadow flex flex-col text-center item-center h-[auto] w-[250px] p-2 justify-around mt-[20px] rounded"
+              data-aos="zoom-in"
+            >
+              <div>
+                <img className="h-[250px] w-[200px]" src={image} alt="" />
+              </div>
+              <div>
+                <b>
+                  ₹
+                  <CountUp end={price} duration={2} />
+                </b>
+                <b className="text-slate-500 ml-2">
+                  <strike>₹{rating.count}</strike>
+                </b>
+              </div>
+              <p>{title.slice(0, 18)}</p>
+              <Link to="/address">
+                <button
+                  data-aos="flip-right"
+                  className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"
+                >
+                  BUY NOW
+                </button>
+              </Link>
             </div>
-            <div>
-              <b>
-                ₹
-                <CountUp end={price} duration={2} />
-              </b>
-              <b className="text-slate-500 ml-2">
-                <strike>₹{rating.count}</strike>
-              </b>
-            </div>
-            <p>{title.slice(0, 18)}</p>
-            <Link to="/address">
-              <button
-                data-aos="flip-right"
-                className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"
-              >
-                BUY NOW
-              </button>
-            </Link>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 };

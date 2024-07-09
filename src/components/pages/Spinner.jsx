@@ -3,8 +3,9 @@ import { ClipLoader } from "react-spinners";
 
 const Spinner = () => {
   return (
-    <div>
+    <div className="h-[15px]w-[15px]">
       <ClipLoader
+      
         color="blue"
         loading={true}
         // cssOverride={override}

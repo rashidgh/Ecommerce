@@ -1,12 +1,20 @@
 {
   "data": [
     {
-      "ename": "Rashid",
+      "ename": "Rashid Iqbal",
       "mob": "934610542",
-      "email": "rashid@gmail.com",
+      "email": "iqbal@gmail.com",
       "address": "Dalanpar Daulatpur Arrah Bhojpur India",
       "pincode": "802313",
       "id": 1
+    },
+    {
+      "ename": "Krishna ",
+      "mob": "8965236985",
+      "email": "krishna@gmail.com",
+      "address": "Kochi Kerla India",
+      "pincode": "789654",
+      "id": 2
     }
   ]
 }

@@ -104,7 +104,11 @@ const Address = () => {
                     </div>
                   </div>
                   <div className="ml-8 h-[35px] flex gap-4 ">
-                    <Link className="p-2 bg-blue-400 hover:bg-blue-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center">
+                    <Link
+                      state={{ id: val.id }}
+                      to="/updateData"
+                      className="p-2 bg-blue-400 hover:bg-blue-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
+                    >
                       Edit
                       <span className="text-lg">
                         <FiEdit2 />
