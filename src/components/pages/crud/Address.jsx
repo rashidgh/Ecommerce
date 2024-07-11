@@ -8,12 +8,15 @@ import "aos/dist/aos.css";
 import { Provider } from "../../../api/ContextApi";
 import toast from "react-hot-toast";
 import Spinner from "../Spinner";
+import { TbLocationExclamation } from "react-icons/tb";
 
 const Address = () => {
   let [state, setState] = useState([]);
   let [loading, setLoading] = useState(false);
   const data = useContext(Provider);
   const { deliver, setDeliver } = data;
+  const location = useLocation();
+  console.log(location);
   // !fetching data:
   const fetchData = async () => {
     try {
@@ -128,7 +131,10 @@ const Address = () => {
                   </div>
                 </div>
                 {deliver == val.id ? (
-                  <Link>
+                  <Link
+                    to="/ordered"
+                    state={{ product: location.state, address: val }}
+                  >
                     <div
                       data-aos="fade-left"
                       className="mr-8 p-3 text-xl h-[60px] flex items-center justify-center w-[18vw] text-center bg-orange-400 hover:bg-orange-300 rounded text-white"

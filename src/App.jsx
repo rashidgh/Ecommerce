@@ -13,6 +13,7 @@ import toast, { Toaster } from "react-hot-toast";
 import AddNewAddress from "./components/pages/crud/AddNewAddress";
 import Classbased from "./Classbased";
 import UpdateData from "./components/pages/crud/UpdateData";
+import Ordered from "./components/pages/Ordered";
 
 const App = () => {
   return (
@@ -27,12 +28,13 @@ const App = () => {
           <Route path="/grocery" element={<Grocery />} />
           <Route path="/address" element={<Address />} />
           <Route path="/addNewAddress" element={<AddNewAddress />} />
-          <Route path="/updateData" element={< UpdateData/>} />
+          <Route path="/updateData" element={<UpdateData />} />
+          <Route path="/ordered" element={<Ordered />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
     </ContextApi>
-      
+
     // <Classbased />
   );
 };

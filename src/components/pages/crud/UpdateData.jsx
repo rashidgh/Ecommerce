@@ -28,10 +28,28 @@ const UpdateData = () => {
       particularData(id);
     }
   }, [id]);
-
+  const { ename, mob, email, address, pincode } = state;
   // !handleSubmit:
   const handleSubmit = async e => {
     e.preventDefault();
+    if (!ename && !mob && !email && !address && !pincode) {
+      return toast.error("Credentials can not be empty");
+    }
+    if (!ename) {
+      return toast.error("name field can't be empty");
+    }
+    if (!mob) {
+      return toast.error("mobile field can't be empty");
+    }
+    if (!email) {
+      return toast.error("email field can't be empty");
+    }
+    if (!address) {
+      return toast.error("address field can't be empty");
+    }
+    if (!pincode) {
+      return toast.error("pincode field can't be empty");
+    }
     try {
       await AxiosInstance2.put(`data/${id}`, state);
       navigate("/address");
@@ -63,7 +81,7 @@ const UpdateData = () => {
             name="ename"
             id=""
             placeholder="Enter Name"
-            value={state.ename}
+            value={ename}
             onChange={handleChange}
           />
           <input
@@ -73,7 +91,7 @@ const UpdateData = () => {
             name="mob"
             id=""
             placeholder="Enter Number"
-            value={state.mob}
+            value={mob}
             onChange={handleChange}
           />
           <input
@@ -83,7 +101,7 @@ const UpdateData = () => {
             name="email"
             id=""
             placeholder="Enter Email Id"
-            value={state.email}
+            value={email}
             onChange={handleChange}
           />
           <input
@@ -93,7 +111,7 @@ const UpdateData = () => {
             name="address"
             id=""
             placeholder="Enter Address"
-            value={state.address}
+            value={address}
             onChange={handleChange}
           />
           <input
@@ -101,7 +119,7 @@ const UpdateData = () => {
             className="p-[12px] w-[300px] rounded"
             type="text"
             placeholder="Enter pincode"
-            value={state.pincode}
+            value={pincode}
             onChange={handleChange}
             name="pincode"
             id=""

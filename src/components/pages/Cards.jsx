@@ -54,7 +54,7 @@ const Cards = () => {
                 </b>
               </div>
               <p>{title.slice(0, 18)}</p>
-              <Link to="/address">
+              <Link to="/address" state={val}>
                 <button
                   data-aos="flip-right"
                   className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"

@@ -8,7 +8,8 @@ const Navbar = () => {
   if (
     location.pathname == "/address" ||
     location.pathname == "/addNewAddress" ||
-    location.pathname == "/updateData"
+    location.pathname == "/updateData" ||
+    location.pathname == "/ordered"
   ) {
     return null;
   }
