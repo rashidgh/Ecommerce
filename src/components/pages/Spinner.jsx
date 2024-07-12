@@ -9,7 +9,7 @@ const Spinner = () => {
         color="blue"
         loading={true}
         // cssOverride={override}
-        size={150}
+        size={80}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

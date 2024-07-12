@@ -14,6 +14,7 @@ import AddNewAddress from "./components/pages/crud/AddNewAddress";
 import Classbased from "./Classbased";
 import UpdateData from "./components/pages/crud/UpdateData";
 import Ordered from "./components/pages/Ordered";
+import Login from "./components/pages/auth/Login";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/addNewAddress" element={<AddNewAddress />} />
           <Route path="/updateData" element={<UpdateData />} />
           <Route path="/ordered" element={<Ordered />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

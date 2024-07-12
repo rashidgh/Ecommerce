@@ -1,6 +1,7 @@
 import React from "react";
 import { TbLocationExclamation } from "react-icons/tb";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const location = useLocation();
@@ -9,7 +10,8 @@ const Navbar = () => {
     location.pathname == "/address" ||
     location.pathname == "/addNewAddress" ||
     location.pathname == "/updateData" ||
-    location.pathname == "/ordered"
+    location.pathname == "/ordered" ||
+    location.pathname == "/login"
   ) {
     return null;
   }
@@ -54,7 +56,15 @@ const Navbar = () => {
           </NavLink>
         </ul>
       </div>
-      <div className="w-[20%] text-center">Authentication</div>
+      <div className="w-[10%] text-center">
+        <div>
+          <Link to="/login">
+            <span className="text-3xl">
+              <FaRegCircleUser />
+            </span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

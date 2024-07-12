@@ -12,7 +12,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(blue, white,blue);
+    background: linear-gradient(rgb(120, 120, 121), white,rgb(74, 74, 75));
 
     border-radius: 10px;
 }
