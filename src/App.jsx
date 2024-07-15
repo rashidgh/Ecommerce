@@ -15,6 +15,8 @@ import Classbased from "./Classbased";
 import UpdateData from "./components/pages/crud/UpdateData";
 import Ordered from "./components/pages/Ordered";
 import Login from "./components/pages/auth/Login";
+import Profile from "./components/pages/Profile";
+import Skelton from "./components/pages/Skelton";
 
 const App = () => {
   return (

@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CountUp from "react-countup";
 
 const Ordered = () => {
   const location = useLocation();
@@ -40,18 +41,14 @@ const Ordered = () => {
 
   // !Aos Animation:
   useEffect(() => {
-    AOS.init();
+    AOS.init({ duration: 1000 });
   }, []);
-
   //   console.log(location);
   return (
-    <div
-      data-aos="zoom-in"
-      className="flex flex-col h-[80vh] w-[100vw] text-slate-700"
-    >
+    <div className="flex flex-col h-[80vh] w-[100vw] text-slate-700">
       <div className="bg-white w-[90%] flex justify-around h-[40vh] mt-6 item-center">
-        <div className="w-[15%]">
-          <img className="h-[200px] mt-2" src={image} alt="" />
+        <div className="w-[15%]" data-aos="zoom-in">
+          <img className="h-[200px] mt-2" src={image} alt="no image" />
         </div>
         <div className="w-[30%] mt-5">
           <p className="font-semibold">{title?.slice(0, 25)}</p>
@@ -65,14 +62,18 @@ const Ordered = () => {
             <p>
               Delivery Expected By Tomorrow{" "}
               <span className="text-sm text-blue-600 ml-2 font-bold">
-                {tommorowDay} {tommoroDate+"th"} {month}{" "}
+                {tommorowDay} {tommoroDate + "th"} {month}{" "}
               </span>
             </p>
           </div>
         </div>
         <div className="w-[10%] mt-5 flex gap-2 font-semibold">
-          <p>₹{price}</p>
-          <strike className="text-slate-500">₹{rating?.count}</strike>
+          <p>
+            ₹<CountUp end={price} duration={2} />
+          </p>
+          <strike className="text-slate-500">
+            ₹<CountUp end={rating?.count} duration={2} />
+          </strike>
         </div>
       </div>
       <div className="text-blue-500 ml-6">

@@ -23,13 +23,13 @@ const Carosel = () => {
         data-interval={3000}
       >
         <div>
-          <img className="h-[70vh]" src={image1} />
+          <img className="h-[70vh] object-cover" src={image1} />
         </div>
         <div>
-          <img className="h-[70vh]" src={image2} />
+          <img className="h-[70vh] object-cover" src={image2} />
         </div>
         <div>
-          <img className="h-[70vh]" src={image3} />
+          <img className="h-[70vh] object-cover" src={image3} />
         </div>
       </Carousel>
     </div>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AxiosInstance2 } from "../../../api/AxiosInstance";
 import { Link, useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AddNewAddress = () => {
   const [state, setState] = useState({
@@ -11,7 +13,7 @@ const AddNewAddress = () => {
     address: "",
     pincode: "",
   });
-  
+
   let navigate = useNavigate();
   const { ename, mob, email, address, pincode } = state;
   // !handleSubmit:
@@ -50,6 +52,10 @@ const AddNewAddress = () => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <div className="bg-slate-100 w-[100vw] h-[100vh]">
       <div className="flex h-[90vh] w-[100vw] justify-center items-center">
@@ -103,11 +109,12 @@ const AddNewAddress = () => {
             id=""
           />
 
-          {/* <Link to="/address"> */}
-          <button className="w-full bg-blue-500 text-white p-[12px] mt-2 ">
+          <button
+            data-aos="flip-right"
+            className="w-full bg-blue-500 hover:bg-blue-400 text-white p-[12px] mt-2 "
+          >
             Add Address
           </button>
-          {/* </Link> */}
         </form>
       </div>
     </div>

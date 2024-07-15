@@ -3,6 +3,9 @@ import AxiosInstance from "../../../api/AxiosInstance";
 import Spinner from "../Spinner";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Skeleton from "../Skelton";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Mens = () => {
   let [state, setState] = useState([]);
@@ -22,12 +25,19 @@ const Mens = () => {
   useEffect(() => {
     fetchData();
   }, []);
+   useEffect(() => {
+     AOS.init();
+   }, []);
   return (
     <div className="flex flex-wrap gap-4  mt-[100px] ">
-      {loading == false ? (
-        <span className="h-[40vh] flex justify-center">
-          <Spinner />
-        </span>
+      {loading === false ? (
+        <div className="flex  flex-col w-[100vw]">
+          <div className="flex gap-10 h-[auto] ">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+        </div>
       ) : state.length < 1 ? (
         <p className="h-[20vh] text-red-600 font-semibold flex justify-center items-center text-2xl">
           No Data Found
@@ -51,7 +61,7 @@ const Mens = () => {
                 </b>
               </div>
               <p>{title.slice(0, 18)}</p>
-              <Link to="/address">
+              <Link to="/address" data-aos="flip-right">
                 <button
                   // data-aos="flip-right"
                   className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"

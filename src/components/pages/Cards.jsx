@@ -1,66 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AxiosInstance from "../../api/AxiosInstance";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
-import CountUp from "react-countup";
 import Spinner from "./Spinner";
+import Skeleton from "../pages/Skelton";
 
-const Cards = () => {
+
+const Card = () => {
   let [state, setState] = useState([]);
-  const [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(false);
   const fetchData = async () => {
-    let { data } = await AxiosInstance("/products");
-    console.log(data);
-    setState(data);
-    setLoading(true);
+    try {
+      let { data } = await AxiosInstance.get("/products");
+      setState(data);
+      setLoading(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     fetchData();
   }, []);
-  // !Aos Animation:
-  useEffect(() => {
-    AOS.init();
-  }, []);
+
+ 
+
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center mt-[100px] ">
-      {loading == false ? (
-        <span className="h-[40vh] flex justify-center item-center">
-          <Spinner />
-        </span>
+    <div className="flex flex-wrap gap-4 item-center justify-center items-center mt-[50px]">
+      {loading === false ? (
+        <div className="flex justify-center items-center flex-col w-[100vw]">
+          <div className="flex gap-10 h-[auto]  mt-[50px]">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+          <div className="flex gap-10 h-[auto]  mt-[50px]">
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </div>
+        </div>
       ) : state.length < 1 ? (
-        <p className="h-[20vh] text-red-600 font-semibold flex justify-center items-center text-2xl">
-          No Data Found
+        <p className="h-[40vh] flex items-center justify-center text-xl font-semibold text-red-500">
+          Data not Found
         </p>
       ) : (
-        state.map((val, ind) => {
+        state?.map((val, ind) => {
           const { image, title, price, rating } = val;
+          {
+            /* console.log(val); */
+          }
           return (
             <div
+              
               key={ind}
-              className="bg-[white] shadow flex flex-col text-center item-center h-[auto] w-[250px] p-2 justify-around mt-[20px] rounded"
-              data-aos="zoom-in"
+              className=" bg-[#fff] shadow flex flex-col items-center  h-[auto] w-[250px] p-2 justify-around mt-[20px] rounded"
             >
-              <div>
-                <img className="h-[250px] w-[200px]" src={image} alt="" />
-              </div>
-              <div>
-                <b>
-                  ₹
-                  <CountUp end={price} duration={2} />
-                </b>
-                <b className="text-slate-500 ml-2">
-                  <strike>₹{rating.count}</strike>
-                </b>
-              </div>
-              <p>{title.slice(0, 18)}</p>
-              <Link to="/address" state={val}>
-                <button
-                  data-aos="flip-right"
-                  className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"
-                >
-                  BUY NOW
-                </button>
+              <img className="h-[250px]" width="200px" src={image} />
+              <p>
+                <span>
+                  <b>₹{price}</b>
+                </span>
+                <strike>
+                  <b className="text-slate-600 ml-3">₹{rating?.count}</b>
+                </strike>
+              </p>
+
+              <p>{title.slice(0, 20)}</p>
+              <Link 
+                state={val}
+                to="/address"
+                className="bg-orange-500 hover:bg-orange-400  p-3 w-full rounded text-white text-center "
+              >
+                <button>BUY NOW</button>
               </Link>
             </div>
           );
@@ -70,4 +84,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default Card;

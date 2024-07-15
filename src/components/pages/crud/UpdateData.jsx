@@ -17,6 +17,7 @@ const UpdateData = () => {
   const particularData = async id => {
     try {
       let data = await AxiosInstance2.get(`data/${id}`);
+      
       console.log(data);
       setState(data.data);
     } catch (err) {
@@ -53,6 +54,7 @@ const UpdateData = () => {
     try {
       await AxiosInstance2.put(`data/${id}`, state);
       navigate("/address");
+      toast.success("Data Updated Successfully");
     } catch (error) {
       toast.error("something went wrong");
     }
@@ -128,7 +130,7 @@ const UpdateData = () => {
           {/* <Link to="/address"> */}
           <button
             data-aos="zoom-in"
-            className="w-full bg-blue-500 text-white p-[12px] mt-2 "
+            className="w-full bg-blue-500 hover:bg-blue-400 text-white p-[12px] mt-2 "
           >
             Update Address
           </button>

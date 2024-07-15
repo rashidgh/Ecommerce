@@ -34,22 +34,31 @@ const Address = () => {
 
   // !deleting data:
   const deleteData = async id => {
-    try {
-      await AxiosInstance2.delete(`data/${id}`);
-      setState(prev => prev.filter(val => val.id != id));
-      toast.success("Address has been deleted");
-    } catch (error) {
-      console.log(error);
-      toast.error("something went wrong");
+    if (sessionStorage.getItem("token")) {
+      try {
+        await AxiosInstance2.delete(`data/${id}`);
+        setState(prev => prev.filter(val => val.id != id));
+        toast.success("Address has been deleted");
+      } catch (error) {
+        console.log(error);
+        toast.error("something went wrong");
+      }
+    }
+  };
+
+  // !is LogeedIn
+  const isLogeedIn = () => {
+    if (!sessionStorage.getItem("token")) {
+      toast.error("please login first");
     }
   };
   // !Aos Animation:
   useEffect(() => {
-    AOS.init();
+    AOS.init({duration:1000});
   }, []);
 
   return (
-    <div data-aos="zoom-in">
+    <div >
       <div className="h-[70px] bg-blue-500 w-[100vw] flex text-white items-center">
         <Link to="/" className="w-[15%] text-center text-xl">
           <p>Qspider Fashion</p>
@@ -109,7 +118,12 @@ const Address = () => {
                   <div className="ml-8 h-[35px] flex gap-4 ">
                     <Link
                       state={{ id: val.id }}
-                      to="/updateData"
+                      to={
+                        sessionStorage.getItem("token")
+                          ? "/updateData"
+                          : "/login"
+                      }
+                      onClick={() => isLogeedIn()}
                       className="p-2 bg-blue-400 hover:bg-blue-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
                     >
                       Edit
@@ -120,6 +134,7 @@ const Address = () => {
                     <button
                       onClick={() => {
                         deleteData(id);
+                        isLogeedIn();
                       }}
                       className="p-2 bg-red-400 hover:bg-red-300 text-sm w-[auto] text-white font-semibold rounded text-center flex gap-2 item-center"
                     >
@@ -132,8 +147,9 @@ const Address = () => {
                 </div>
                 {deliver == val.id ? (
                   <Link
-                    to="/ordered"
+                    to={sessionStorage.getItem("token") ? "/ordered" : "/login"}
                     state={{ product: location.state, address: val }}
+                    onClick={() => {}}
                   >
                     <div
                       data-aos="fade-left"
