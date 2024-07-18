@@ -1,19 +1,18 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import image1 from "../../assets/CaroselImg1.jpg"
+import image1 from "../../assets/CaroselImg1.jpg";
 import image2 from "../../assets/CaroselImg2.jpg";
 import image3 from "../../assets/CaroselImg3.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 
 const Carosel = () => {
   useEffect(() => {
     AOS.init();
   }, []);
   return (
-    <div data-aos="zoom-in">
+    <div className="relative z-10" data-aos="zoom-in">
       <Carousel
         autoPlay={true}
         showArrows={false}

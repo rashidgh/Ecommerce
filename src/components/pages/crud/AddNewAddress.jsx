@@ -4,6 +4,8 @@ import { AxiosInstance2 } from "../../../api/AxiosInstance";
 import { Link, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { RxCross2 } from "react-icons/rx";
+
 
 const AddNewAddress = () => {
   const [state, setState] = useState({
@@ -57,7 +59,12 @@ const AddNewAddress = () => {
     AOS.init({ duration: 1000 });
   }, []);
   return (
-    <div className="bg-slate-100 w-[100vw] h-[100vh]">
+    <div className="bg-slate-100 w-[100vw] h-[100vh] relative">
+      <Link to="/address">
+        <span className="inline-block absolute top-16 right-80 text-2xl text-red-500">
+          <RxCross2 />
+        </span>
+      </Link>
       <div className="flex h-[90vh] w-[100vw] justify-center items-center">
         <form
           onSubmit={handleSubmit}

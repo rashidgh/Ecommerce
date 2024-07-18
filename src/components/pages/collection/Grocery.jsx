@@ -25,19 +25,18 @@ const Grocery = () => {
   useEffect(() => {
     fetchData();
   }, []);
-   useEffect(() => {
-     AOS.init();
-   }, []);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <div className="flex flex-wrap gap-4 item-center mt-[50px]">
       {loading === false ? (
         <div className="flex  flex-col w-[100vw]">
-          <div className="flex gap-10 h-[auto] ">
+          <div className="flex gap-4 h-[auto] ">
             <Skelton />
             <Skelton />
             <Skelton />
             <Skelton />
-          
           </div>
         </div>
       ) : state.length < 1 ? (
@@ -66,7 +65,8 @@ const Grocery = () => {
               </p>
 
               <p>{title.slice(0, 20)}</p>
-              <Link data-aos="flip-right"
+              <Link
+                data-aos="flip-right"
                 state={val}
                 to="/address"
                 className="bg-orange-500 p-3 w-full rounded text-white text-center"

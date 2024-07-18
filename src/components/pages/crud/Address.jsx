@@ -54,11 +54,11 @@ const Address = () => {
   };
   // !Aos Animation:
   useEffect(() => {
-    AOS.init({duration:1000});
+    AOS.init({ duration: 1000 });
   }, []);
 
   return (
-    <div >
+    <div>
       <div className="h-[70px] bg-blue-500 w-[100vw] flex text-white items-center">
         <Link to="/" className="w-[15%] text-center text-xl">
           <p>Qspider Fashion</p>
@@ -147,9 +147,9 @@ const Address = () => {
                 </div>
                 {deliver == val.id ? (
                   <Link
+                    onClick={() => setDeliver("")}
                     to={sessionStorage.getItem("token") ? "/ordered" : "/login"}
                     state={{ product: location.state, address: val }}
-                    onClick={() => {}}
                   >
                     <div
                       data-aos="fade-left"

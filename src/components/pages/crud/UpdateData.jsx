@@ -4,6 +4,8 @@ import { AxiosInstance2 } from "../../../api/AxiosInstance";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { RxCross2 } from "react-icons/rx";
+
 
 const UpdateData = () => {
   const [state, setState] = useState([]);
@@ -71,6 +73,11 @@ const UpdateData = () => {
   }, []);
   return (
     <div className="bg-slate-100 w-[100vw] h-[100vh]">
+      <Link to="/address">
+        <span className="inline-block absolute top-16 right-80 text-2xl text-red-500">
+          <RxCross2 />
+        </span>
+      </Link>
       <div className="flex h-[90vh] w-[100vw] justify-center items-center">
         <form
           onSubmit={handleSubmit}

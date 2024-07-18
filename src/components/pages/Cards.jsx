@@ -27,14 +27,14 @@ const Card = () => {
     <div className="flex flex-wrap gap-4 item-center justify-center items-center mt-[50px]">
       {loading === false ? (
         <div className="flex justify-center items-center flex-col w-[100vw]">
-          <div className="flex gap-10 h-[auto]  mt-[50px]">
+          <div className="flex gap-2 h-[auto]  mt-[50px]">
             <Skeleton />
             <Skeleton />
             <Skeleton />
             <Skeleton />
             <Skeleton />
           </div>
-          <div className="flex gap-10 h-[auto]  mt-[50px]">
+          <div className="flex gap-2 h-[auto]  mt-[50px]">
             <Skeleton />
             <Skeleton />
             <Skeleton />

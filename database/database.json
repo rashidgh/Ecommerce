@@ -9,20 +9,20 @@
       "id": "1"
     },
     {
-      "ename": "Krishna kumar",
-      "mob": "8965236985",
-      "email": "krishna@gmail.com",
-      "address": "Kochi Kerla India",
-      "pincode": "789654",
-      "id": "2"
-    },
-    {
       "id": "ec67",
       "ename": "Sahbaj Aalam",
       "mob": "9876567890",
       "email": "sahbaj@gmail.com",
       "address": "Pakri chowk Arrah Bhojpur India",
       "pincode": "908909"
+    },
+    {
+      "id": "612c",
+      "ename": "Diwakar Rai",
+      "mob": "8909876545",
+      "email": "diwakar@gmail.com",
+      "address": "sector5 Shilong India",
+      "pincode": "987654"
     }
   ]
 }

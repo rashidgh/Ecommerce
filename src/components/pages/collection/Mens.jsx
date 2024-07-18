@@ -25,14 +25,14 @@ const Mens = () => {
   useEffect(() => {
     fetchData();
   }, []);
-   useEffect(() => {
-     AOS.init();
-   }, []);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <div className="flex flex-wrap gap-4  mt-[100px] ">
       {loading === false ? (
         <div className="flex  flex-col w-[100vw]">
-          <div className="flex gap-10 h-[auto] ">
+          <div className="flex gap-4 h-[auto] ">
             <Skeleton />
             <Skeleton />
             <Skeleton />
@@ -61,13 +61,13 @@ const Mens = () => {
                 </b>
               </div>
               <p>{title.slice(0, 18)}</p>
-              <Link to="/address" data-aos="flip-right">
-                <button
-                  // data-aos="flip-right"
-                  className="bg-orange-500 p-3 w-full rounded text-white text-center hover:bg-orange-400"
-                >
-                  BUY NOW
-                </button>
+              <Link
+                to="/address"
+                data-aos="flip-right"
+                state={val}
+                className="bg-orange-500 p-3 w-full rounded text-white text-center"
+              >
+                <button>BUY NOW</button>
               </Link>
             </div>
           );

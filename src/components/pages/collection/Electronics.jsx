@@ -33,13 +33,13 @@ const Electronics = () => {
   }, []);
 
   useEffect(() => {
-    AOS.init();
+    AOS.init({ duration: 1000 });
   }, []);
   return (
     <div className="flex flex-wrap gap-4 item-center mt-[50px]">
       {loading === false ? (
         <div className="flex  flex-col w-[100vw]">
-          <div className="flex gap-10 h-[auto] ">
+          <div className="flex gap-4 h-[auto] ">
             <Skelton />
             <Skelton />
             <Skelton />
