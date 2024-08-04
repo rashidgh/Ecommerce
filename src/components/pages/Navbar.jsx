@@ -32,7 +32,7 @@ const Navbar = () => {
     <div className="flex h-[70px] w-full bg-blue-500 items-center text-white gap-[20px] justify-around sticky top-0 z-20">
       <div className="w-[15%]">
         <Link to="/">
-          <b className="text-xl">Sk Fashion</b>
+          <b className="text-xl">Qspider Fashion</b>
         </Link>
       </div>
       <div className="w-[50%]">
